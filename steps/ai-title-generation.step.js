@@ -1,9 +1,9 @@
 // step - 4:
 // Uses Gemini to generate improved titles for the fetched videos
 
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI } from "@google/genai"
 
-const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
+const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY})
 
 export const config = {
   name: "GenerateTitles",
@@ -41,7 +41,7 @@ export const handler = async (eventData, {emit, logger, state}) => {
         
         For each title, provide:
         1. An improved version that is more engaging, SEO-friendly, and likely to get more clicks
-        2. A brief rationale (1-2 sentences) explaining why the new title is better
+        2. A brief rational (1-2 sentences) explaining why the new title is better
         
         Guideelines:
         - Keep the core topic and authenticity
@@ -58,7 +58,7 @@ export const handler = async (eventData, {emit, logger, state}) => {
                 {
                     "original": "...",
                     "improved": "...",
-                    "rationale": "..."
+                    "rational": "..."
                 }
             ]
         }`
@@ -71,7 +71,7 @@ export const handler = async (eventData, {emit, logger, state}) => {
                 temperature: 0.7,
                 responseMimeType: "application/json"
             }
-        });
+        })
 
         if(!response || !response.text) {
             throw new Error("Error generating titles: Invalid response from AI")
@@ -83,7 +83,7 @@ export const handler = async (eventData, {emit, logger, state}) => {
             videoId: videos[index].videoId,
             originalTitle: title.original,
             improvedTitle: title.improved,
-            rationale: title.rationale,
+            rational: title.rational,
             url: videos[index].url
         }))
 
@@ -104,7 +104,7 @@ export const handler = async (eventData, {emit, logger, state}) => {
                 improvedTitles
             }
         })
-
+        
     } catch (err) {
         logger.error("Error generating titles", {error: err.message})
 
