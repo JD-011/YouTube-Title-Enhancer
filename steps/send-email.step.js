@@ -28,10 +28,8 @@ export const config = {
 }
 
 export const handler = async (eventData, {emit, logger, state}) => {
-    let jobId
-
     try {
-        jobId = eventData.jobId
+        const jobId = eventData.jobId
         const email = eventData.email
         const channelName = eventData.channelName
         const improvedTitles = eventData.improvedTitles
@@ -96,11 +94,6 @@ export const handler = async (eventData, {emit, logger, state}) => {
 
     } catch (err) {
         logger.error("Error sending email", {error: err.message})
-
-        if(!jobId) {
-            logger.error("cannot send error notification, missing jobId or email")
-            return
-        }
 
         const jobData = await state.get("jobs", jobId)
         await state.set("jobs", jobId, {
