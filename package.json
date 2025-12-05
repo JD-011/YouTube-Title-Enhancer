@@ -13,6 +13,7 @@
     "motia"
   ],
   "dependencies": {
+    "@google/genai": "^1.31.0",
     "@motiadev/adapter-bullmq-events": "^0.14.0-beta.164",
     "@motiadev/core": "^0.14.0-beta.164",
     "@motiadev/plugin-bullmq": "^0.14.0-beta.164",
