@@ -13,7 +13,8 @@ declare module 'motia' {
 
   interface Handlers {
     'SubmitChannel': ApiRouteHandler<Record<string, unknown>, unknown, { topic: 'yt.submit'; data: never }>
-    'ResolveChannel': EventHandler<never, never>
+    'ResolveChannel': EventHandler<never, { topic: 'yt.channel.resolved'; data: never }>
+    'FetchVideos': EventHandler<never, never>
   }
     
 }

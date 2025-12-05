@@ -51,6 +51,8 @@ export const handler = async (eventData, {emit, logger, state}) => {
         }
         
         if(!channelId){
+            logger.info("Channel not found", {jobId, channel, searchData})
+
             await state.set("jobs", jobId, {
                 ...jobData,
                 status: "failed",
